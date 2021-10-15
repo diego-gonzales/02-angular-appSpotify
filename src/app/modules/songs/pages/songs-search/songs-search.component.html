@@ -1,0 +1,25 @@
+<div class="">
+  <form [formGroup]="myForm"
+        (ngSubmit)="onSearch()">
+    <input type="text" class="form-control"
+           placeholder="You can search an artist, a song, an album, try it"
+           formControlName="keyword"
+    >
+  </form>
+</div>
+
+<ng-container *ngIf="isSearching; else elseTemplate">
+  <app-spinner *ngIf="!(expiredToken$ | async)"></app-spinner>
+  <app-messsage *ngIf="expiredToken$ | async"></app-messsage>
+</ng-container>
+
+<ng-template #elseTemplate>
+  <div *ngIf="suggestions.length" class="row my-4 justify-content-center">
+    <div class="col-md-4 col-lg-3 mb-4"
+         *ngFor="let suggestion of suggestions">
+
+         <app-song-card [song]="suggestion"></app-song-card>
+
+    </div>
+  </div>
+</ng-template>

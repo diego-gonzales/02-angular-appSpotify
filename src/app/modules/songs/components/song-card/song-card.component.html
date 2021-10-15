@@ -1,0 +1,12 @@
+<div class="card puntero"
+     style="width: 100%;"
+     (click)="goToArtistPage()">
+  <img [src]="song.images[0].url" class="card-img-top" [alt]="song.name">
+  <div class="card-body text-center">
+    <p class="card-title fw-bold">{{ song.name }}</p>
+    <span class="badge bg-primary"
+          *ngFor="let artist of song.artists">
+      {{ artist.name }}
+    </span>
+  </div>
+</div>

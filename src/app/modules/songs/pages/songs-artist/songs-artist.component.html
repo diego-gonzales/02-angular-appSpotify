@@ -1,0 +1,51 @@
+<ng-container *ngIf="!artist && !tracks; else elseTemplate">
+  <app-spinner></app-spinner>
+</ng-container>
+
+<ng-template #elseTemplate>
+  <div class="row text-center justify-content-center">
+    <div class="col-md-12">
+      <img [src]="artist.images[1].url" [alt]="artist.name"  class="img-circle img-thumbnail">
+    </div>
+    <div class="col-md-12 my-2">
+      <h2 class="font-monospace">{{ artist.name | uppercase }}</h2>
+      <a [href]="artist.external_urls.spotify"
+         target="_blank"
+         class="nav-link font-monospace">
+        View Spotify Profile
+      </a>
+    </div>
+    <div class="d-grid gap-2 col-3 mx-auto my-4">
+      <button class="btn btn-danger"
+              (click)="back()">
+        Back
+      </button>
+    </div>
+  </div>
+  <div class="table-responsive my-4">
+    <h2 class="text-center font-monospace">Artist' Top Tracks</h2>
+    <table class="table text-light">
+      <thead class="text-center">
+        <tr>
+          <th scope="col">Cover</th>
+          <th scope="col">Album</th>
+          <th scope="col">Song</th>
+          <th scope="col">Preview</th>
+        </tr>
+      </thead>
+      <tbody class="text-center text-muted">
+        <tr *ngFor="let track of tracks">
+          <td>
+            <img [src]="track.images[1].url" [alt]="track.albumName" class="img-thumb">
+          </td>
+          <td>{{ track.albumName }}</td>
+          <td>{{ track.songName }}</td>
+          <td>
+            <iframe [src]="track.songURI | domSecure:'https://open.spotify.com/embed?uri='" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+

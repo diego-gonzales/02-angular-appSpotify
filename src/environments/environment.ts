@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseAPISpotify: 'https://api.spotify.com/v1',
+  spotifyToken: 'BQAwkRIN1r4zOnDfpaFCKLhzD6aSFWUw7aHBxzISJtpuxg7MOA9hDJx4Wr8Dr3TEL7u9NSDO6PrzbZ04H1k'
 };
 
 /*
